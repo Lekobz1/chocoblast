@@ -9,6 +9,27 @@
     <title>Inscription</title>
 </head>
 <body>
-    
+    <div class="formulaire">
+        <h1>Ajouter un utilisateur</h1>
+        <form method="POST" action="../addUser.php" enctype="multipart/form-data">
+            <label for="nom_utilisateur">Nom :</label>
+            <input type="text" name="nom_utilisateur" id="nom_utilisateur"><br>
+
+            <label for="prenom_utilisateur">Prénom :</label>
+            <input type="text" name="prenom_utilisateur" id="prenom_utilisateur"><br>
+
+            <label for="mail_utilisateur">E-mail :</label>
+            <input type="email" name="mail_utilisateur" id="mail_utilisateur"><br>
+
+            <label for="password_utilisateur">Mot de passe :</label>
+            <input type="password" name="password_utilisateur" id="password_utilisateur"><br>
+
+            <label for="image_utilisateur">Image :</label>
+            <input type="file" name="image_utilisateur" id="image_utilisateur"><br>
+
+            <input type="submit" value="Ajouter">
+        </form>
+
+    </div>
 </body>
 </html>

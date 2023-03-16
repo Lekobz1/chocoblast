@@ -28,7 +28,7 @@
             <label class="label" for="image_utilisateur">Image :</label>
             <input class="input" type="file" name="image_utilisateur" id="image_utilisateur"><br>
 
-            <input class="envoyer" type="submit" value="Ajouter">
+            <input class="envoyer" type="submit" value="Ajouter" name="submit">
         </form>
 
     </div>

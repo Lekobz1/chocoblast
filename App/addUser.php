@@ -1,13 +1,13 @@
 <?php
     //connecter la bdd
-    include '../App/utils/connectbdd/connectBdd.php';
+    include './utils/connectbdd/connectBdd.php';
 
     if (isset($_POST['submit'])){
-        if (!empty($_POST['nom_utilisateur']) and !empty($_POST['prenom_utilisateur']) and !empty($_POST['mail_utilisateur']) and !empty($_POST['password_utilisateur']) and !empty($_POST['image_utilisateur'])){
+        if (!empty($_POST['nom_utilisateur']) and !empty($_POST['prenom_utilisateur']) and !empty($_POST['mail_utilisateur']) and !empty($_POST['password_utilisateur']) and !empty($_FILES['image_utilisateur']['tmp_name'])){
             //test si le fichier à été importé (dossier tmp)
             if($_FILES['image_utilisateur']['tmp_name'] !=""){
                 //tester la taille du fichier
-                if($_FILES['image']['size'] <(10000*1024)){
+                if($_FILES['image_utilisateur']['size'] <(10000*1024)){
                     //récupération de l'extension du fichier
                     $ext =  get_file_extension($_FILES['image_utilisateur']['name']);
                     //test de l'extension du fichier
@@ -18,9 +18,9 @@
                         $prenom = $_POST['prenom_utilisateur'];
                         $mail = $_POST['mail_utilisateur'];
                         $motdepasse = $_POST['password_utilisateur'];
-                        $image = $_POST['image_utilisateur'];
+                        $image = $_FILES['image_utilisateur']['name'];
                         //déplacer le fichier
-                        move_uploaded_file($_FILES['image_utilisateur']['tmp_name'],$destination.$name.'.'.$ext);
+                        move_uploaded_file($_FILES['image_utilisateur']['tmp_name'],$destination.$nom);
                         echo 'le fichier à été importé';
                         //ajouter en BDD
                         ajouter_nouveau_compte($bdd, $nom, $prenom, $mail, $motdepasse, $image);
@@ -60,8 +60,8 @@
             $email = $mail;
             $password = $motdepasse;
             $file = $image;
-            // preparation de la requete
-            $requete = $bdd->prepare('INSERT INTO utilisateur(nom_utilisateur, prenom_utilisateur, mail_utilisateur, password_utilisateur, image_utilisateur) VALUES (?,?,?,?,?)');
+            // preparation de la requete + ajout de le 'ID pour le role et on lui affecte la valeur 1 pour forcer que ce soit un user
+            $requete = $bdd->prepare('INSERT INTO utilisateur(nom_utilisateur, prenom_utilisateur, mail_utilisateur, password_utilisateur, image_utilisateur,id_roles) VALUES (?,?,?,?,?,1)');
             //affectation des variables
             $requete->bindParam(1, $surname, PDO::PARAM_STR);
             $requete->bindParam(2, $name, PDO::PARAM_STR);

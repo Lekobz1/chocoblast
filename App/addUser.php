@@ -1,6 +1,8 @@
 <?php
     //connecter la bdd
     include './utils/connectbdd/connectBdd.php';
+    include './App/model/utilisateur.php';
+
 
     if (isset($_POST['submit'])){
         if (!empty($_POST['nom_utilisateur']) and !empty($_POST['prenom_utilisateur']) and !empty($_POST['mail_utilisateur']) and !empty($_POST['password_utilisateur']) and !empty($_FILES['image_utilisateur']['tmp_name'])){
@@ -75,5 +77,12 @@
             die('Error: '.$e->getMessage());
         }
     }
+
+    //fonction qui recherche si un utilisateur existe par son nom et prenom
+    function getUserByName($bdd, $nom, $prenom){
+
+    }
+
+    
 
 ?>

@@ -1,43 +1,45 @@
 <?php
     //connecter la bdd
     include './utils/connectbdd/connectBdd.php';
-    include './App/model/utilisateur.php';
+    include './model/utilisateur.php';
+    // $bdd = new BddConnect();
+
 
 
     if (isset($_POST['submit'])){
-        if (!empty($_POST['nom_utilisateur']) and !empty($_POST['prenom_utilisateur']) and !empty($_POST['mail_utilisateur']) and !empty($_POST['password_utilisateur']) and !empty($_FILES['image_utilisateur']['tmp_name'])){
+        if (!empty($_POST['nom_utilisateur']) and !empty($_POST['prenom_utilisateur']) and !empty($_POST['mail_utilisateur']) and !empty($_POST['password_utilisateur'])){
             //test si le fichier à été importé (dossier tmp)
-            if($_FILES['image_utilisateur']['tmp_name'] !=""){
-                //tester la taille du fichier
-                if($_FILES['image_utilisateur']['size'] <(10000*1024)){
-                    //récupération de l'extension du fichier
-                    $ext =  get_file_extension($_FILES['image_utilisateur']['name']);
-                    //test de l'extension du fichier
-                    if($ext == 'jpg' OR $ext == 'jpeg' OR $ext == 'png'){
-                        //stocker contenu formulaire
-                        $destination = '../public/asset/image/';
-                        $nom = $_POST['nom_utilisateur'];
-                        $prenom = $_POST['prenom_utilisateur'];
-                        $mail = $_POST['mail_utilisateur'];
-                        $motdepasse = $_POST['password_utilisateur'];
-                        $image = $_FILES['image_utilisateur']['name'];
-                        //déplacer le fichier
-                        move_uploaded_file($_FILES['image_utilisateur']['tmp_name'],$destination.$nom);
-                        echo 'le fichier à été importé';
-                        //ajouter en BDD
-                        ajouter_nouveau_compte($bdd, $nom, $prenom, $mail, $motdepasse, $image);
-                        //afficher une confirmation d'ajout
-                        echo "l'utilisateur a ete ajouté";
+                if($_FILES['image_utilisateur']['tmp_name'] !=""){
+                    //tester la taille du fichier
+                    if($_FILES['image_utilisateur']['size'] <(10000*1024)){
+                        //récupération de l'extension du fichier
+                        $ext =  get_file_extension($_FILES['image_utilisateur']['name']);
+                        //test de l'extension du fichier
+                        if($ext == 'jpg' OR $ext == 'jpeg' OR $ext == 'png'){
+                            //stocker contenu formulaire
+                            $image = $_FILES['image_utilisateur']['name'];  
+                        }else{
+                            echo "le fichier n'a pas la bonne extention";
+                        }
                     }else{
-                        echo "le fichier n'a pas la bonne extention";
+                        echo "le fichier est trop volumineux";
                     }
                 }else{
-                    echo "le fichier est trop volumineux";
+                    $image = '../public/asset/image/prestations.jpg';
                 }
-            }else{
-                Echo "le fichier n'a pas été importé";
-            }
-            
+            //stocker contenu formulaire
+            $destination = '../public/asset/image/';
+            $nom = $_POST['nom_utilisateur'];
+            $prenom = $_POST['prenom_utilisateur'];
+            $mail = $_POST['mail_utilisateur'];
+            $motdepasse = password_hash($_POST['password_utilisateur'], PASSWORD_DEFAULT);
+
+            //déplacer le fichier
+            move_uploaded_file($_FILES['image_utilisateur']['tmp_name'],$destination.$nom);
+            //ajouter en BDD
+            ajouter_nouveau_compte($bdd, $nom, $prenom, $mail, $motdepasse, $image);
+            //afficher une confirmation d'ajout
+            echo "l'utilisateur a ete ajouté";
         }else{
             echo "merci de remplir les données demandées";
         }
@@ -98,7 +100,7 @@
         }
     }
 
-    
+
 
 
 

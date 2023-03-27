@@ -79,10 +79,27 @@
     }
 
     //fonction qui recherche si un utilisateur existe par son nom et prenom
-    function getUserByName($bdd, $nom, $prenom){
+    function getUserByName($bdd, $mail){
+        try {
+            $email = $mail;
 
+            $requete= $bdd->prepare('SELECT mail_utilisateur FROM utilisateur WHERE mail_utilisateur=?');
+
+            $requete->bindParam(1, $email, PDO::PARAM_STR);
+
+            $requete->execute();
+
+            $existe = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+            return $existe;
+
+        } catch (Exception $e) {
+            die('Error: '.$e->getMessage());
+        }
     }
 
     
+
+
 
 ?>

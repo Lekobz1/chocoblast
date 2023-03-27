@@ -1,11 +1,12 @@
 form{
     background-color: peru;
+    
 }
 
 .input{
     display: flex;
     justify-content: center;
-    width: 100%;
+    
     background-color: darkolivegreen;
 }
 
@@ -17,3 +18,9 @@ h1{
     text-align: center;
     text-transform: uppercase;
 }
+
+.formulaire{
+    background-color: rgb(41, 217, 64);
+    
+}
+

@@ -30,6 +30,7 @@
 
             <input class="envoyer" type="submit" value="Ajouter" name="submit">
         </form>
+        
         <?php echo $message ?>
 
     </div>

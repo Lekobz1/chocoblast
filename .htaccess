@@ -5,3 +5,5 @@ RewriteBase /chocoblast
 #si ce n'est pas un répertoire
 RewriteCond %{REQUEST_FILENAME} !-data
 #si ce n'est pas un fichier
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ index.php [QSA,L]

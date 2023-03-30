@@ -26,6 +26,7 @@ class ManagerUtilisateur extends Utilisateur{
     public function insertUser(){
 
         try {
+            $bdd = BddConnect::connexion();
             $nom = $this->getNom();
             $prenom = $this->getPrenom();
             $mail = $this->getMail();
@@ -55,10 +56,9 @@ class ManagerUtilisateur extends Utilisateur{
     public function activeUser(){
 
         try {
+            $bdd = BddConnect::connexion();
 
-            $statut = $this->getStatut();
-
-            $req = $bdd->prepare('UPDATE utilisateur SET statut_utilisateur = true WHERE id_utilisateur = ?');
+            $req = $bdd->prepare('UPDATE utilisateur SET statut_utilisateur = 1 WHERE id_utilisateur = ?');
 
             $req->bindParam(1, $this->getId(), PDO::PARAM_STR);
 

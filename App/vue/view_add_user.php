@@ -12,7 +12,7 @@
 <body>
     <div class="formulaire">
         <h1>Ajouter un utilisateur</h1>
-        <form method="POST" action="../controler/ControlerAddUser.php" enctype="multipart/form-data">
+        <form method="POST" action="#" enctype="multipart/form-data">
             <label class="label" for="nom_utilisateur">Nom :</label>
             <input class="input" type="text" name="nom_utilisateur" id="nom_utilisateur"><br>
 
@@ -30,6 +30,7 @@
 
             <input class="envoyer" type="submit" value="Ajouter" name="submit">
         </form>
+        <?php echo $message ?>
 
     </div>
 </body>

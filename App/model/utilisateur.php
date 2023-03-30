@@ -8,7 +8,7 @@ class Utilisateur{
     private $mail;
     private $password;
     private $image;
-    private $statut = false;
+    private $statut = 0;
     private $role = 1;
 
 

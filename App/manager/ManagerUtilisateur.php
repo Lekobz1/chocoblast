@@ -1,6 +1,4 @@
 <?php
-require_once '../utils/BddConnect.php';
-require_once '../model/Utilisateur.php';
 
 class ManagerUtilisateur extends Utilisateur{
 
@@ -35,7 +33,7 @@ class ManagerUtilisateur extends Utilisateur{
             $statut = $this->getStatut();
             $role = $this->getRole();
 
-            $req = $bdd->prepare('INSERT INTO utilisateur(nom_utilisateur, prenom_utilisateur, mail_utilisateur, password_utilisateur, image_utilisateur,statut_utilisateur,id_role) VALUES (?,?,?,?,?,?,?)');
+            $req = $bdd->prepare('INSERT INTO utilisateur(nom_utilisateur, prenom_utilisateur, mail_utilisateur, password_utilisateur, image_utilisateur,statut_utilisateur,id_roles) VALUES (?,?,?,?,?,?,?)');
 
             $req->bindParam(1, $nom, PDO::PARAM_STR);
             $req->bindParam(2, $prenom, PDO::PARAM_STR);

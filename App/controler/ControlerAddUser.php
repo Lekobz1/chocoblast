@@ -1,10 +1,11 @@
 <?php
     //connecter la bdd
     include './App/utils/BddConnect.php';
-    include './App/manager/ManagerUtilisateur.php';
     include './App/model/Utilisateur.php';
+    include './App/manager/ManagerUtilisateur.php';
+    
 
-    $message= '';
+    $message = '';
 
     if (isset($_POST['submit'])){
         if (!empty($_POST['nom_utilisateur']) and !empty($_POST['prenom_utilisateur']) and !empty($_POST['mail_utilisateur']) and !empty($_POST['password_utilisateur']) ){
@@ -28,7 +29,7 @@
                             //déplacer le fichier
                             move_uploaded_file($_FILES['image_utilisateur']['tmp_name'],$destination.$nom);
                             //ajouter en BDD
-                            $nouveauUtilisateur = new ManagerUtilisateur($nom, $prenom, $mail, $password);
+                            $nouveauUtilisateur = new ManagerUtilisateur($nom, $prenom, $mail, $motdepasse);
                             $nouveauUtilisateur->setImage($destinationImg);
                             $nouveauUtilisateur->insertUser();
                             // ajouter_nouveau_compte($bdd, $nom, $prenom, $mail, $motdepasse, $image);
@@ -49,7 +50,7 @@
                     $motdepasse = password_hash($_POST['password_utilisateur'], PASSWORD_DEFAULT);
                     //ajouter en BDD
                     $bdd= BddConnect::connexion();
-                    $nouveauUtilisateur = new ManagerUtilisateur($nom, $prenom, $mail, $password);
+                    $nouveauUtilisateur = new ManagerUtilisateur($nom, $prenom, $mail, $motdepasse);
                     $nouveauUtilisateur->setImage($destinationImg);
                     $nouveauUtilisateur->insertUser();
                     // ajouter_nouveau_compte($bdd, $nom, $prenom, $mail, $motdepasse, $image);

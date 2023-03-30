@@ -1,23 +1,35 @@
 <?php
     //connecter la bdd
-    include './utils/connectbdd/connectBdd.php';
-    include './model/utilisateur.php';
-    // $bdd = new BddConnect();
+    include '../utils/BddConnect.php';
+    include '../manager/ManagerUtilisateur.php';
 
 
 
     if (isset($_POST['submit'])){
-        if (!empty($_POST['nom_utilisateur']) and !empty($_POST['prenom_utilisateur']) and !empty($_POST['mail_utilisateur']) and !empty($_POST['password_utilisateur'])){
+        if (!empty($_POST['nom_utilisateur']) and !empty($_POST['prenom_utilisateur']) and !empty($_POST['mail_utilisateur']) and !empty($_POST['password_utilisateur']) ){
             //test si le fichier à été importé (dossier tmp)
                 if($_FILES['image_utilisateur']['tmp_name'] !=""){
                     //tester la taille du fichier
-                    if($_FILES['image_utilisateur']['size'] <(10000*1024)){
+                    if($_FILES['image_utilisateur']['size'] <(1000*1024)){
                         //récupération de l'extension du fichier
                         $ext =  get_file_extension($_FILES['image_utilisateur']['name']);
                         //test de l'extension du fichier
                         if($ext == 'jpg' OR $ext == 'jpeg' OR $ext == 'png'){
                             //stocker contenu formulaire
-                            $image = $_FILES['image_utilisateur']['name'];  
+                            $image = $_FILES['image_utilisateur']['name'];
+                            //stocker contenu formulaire
+                            $destination = '../public/asset/image/';
+                            $nom = $_POST['nom_utilisateur'];
+                            $prenom = $_POST['prenom_utilisateur'];
+                            $mail = $_POST['mail_utilisateur'];
+                            $motdepasse = password_hash($_POST['password_utilisateur'], PASSWORD_DEFAULT);
+
+                            //déplacer le fichier
+                            move_uploaded_file($_FILES['image_utilisateur']['tmp_name'],$destination.$nom);
+                            //ajouter en BDD
+                            ajouter_nouveau_compte($bdd, $nom, $prenom, $mail, $motdepasse, $image);
+                            //afficher une confirmation d'ajout
+                            echo "l'utilisateur a ete ajouté"; 
                         }else{
                             echo "le fichier n'a pas la bonne extention";
                         }
@@ -26,28 +38,23 @@
                     }
                 }else{
                     $image = '../public/asset/image/prestations.jpg';
-                }
-            //stocker contenu formulaire
-            $destination = '../public/asset/image/';
-            $nom = $_POST['nom_utilisateur'];
-            $prenom = $_POST['prenom_utilisateur'];
-            $mail = $_POST['mail_utilisateur'];
-            $motdepasse = password_hash($_POST['password_utilisateur'], PASSWORD_DEFAULT);
-
-            //déplacer le fichier
-            move_uploaded_file($_FILES['image_utilisateur']['tmp_name'],$destination.$nom);
-            //ajouter en BDD
-            ajouter_nouveau_compte($bdd, $nom, $prenom, $mail, $motdepasse, $image);
-            //afficher une confirmation d'ajout
-            echo "l'utilisateur a ete ajouté";
+                    //stocker contenu formulaire
+                    $nom = $_POST['nom_utilisateur'];
+                    $prenom = $_POST['prenom_utilisateur'];
+                    $mail = $_POST['mail_utilisateur'];
+                    $motdepasse = password_hash($_POST['password_utilisateur'], PASSWORD_DEFAULT);
+                    //ajouter en BDD
+                    $bdd= BddConnect::connexion();
+                    ajouter_nouveau_compte($bdd, $nom, $prenom, $mail, $motdepasse, $image);
+                    //afficher une confirmation d'ajout
+                    echo "l'utilisateur a ete ajouté";
+                }     
         }else{
             echo "merci de remplir les données demandées";
         }
     }else{
         echo "merci de remplir le formulaire";
     }
-
-
 
     //fonction pour récupérer l'extension
     function get_file_extension($file) {
@@ -64,6 +71,7 @@
             $email = $mail;
             $password = $motdepasse;
             $file = $image;
+            $bdd = BddConnect::connexion();
             // preparation de la requete + ajout de le 'ID pour le role et on lui affecte la valeur 1 pour forcer que ce soit un user
             $requete = $bdd->prepare('INSERT INTO utilisateur(nom_utilisateur, prenom_utilisateur, mail_utilisateur, password_utilisateur, image_utilisateur,id_roles) VALUES (?,?,?,?,?,1)');
             //affectation des variables
@@ -99,9 +107,5 @@
             die('Error: '.$e->getMessage());
         }
     }
-
-
-
-
 
 ?>

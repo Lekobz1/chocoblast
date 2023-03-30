@@ -34,7 +34,6 @@ h1{
 
 
 body{
-    background-image: url(../image/prestations.jpg) ;
     display: flex;
     justify-content: center;
     align-items: center;

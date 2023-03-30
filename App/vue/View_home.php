@@ -1,3 +1,5 @@
+<!-- //http://localhost/chocoblast/App/vue/view_home.php// -->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,16 +12,44 @@
 <body>
 
 <div class="home">
-  <div class="chocoweek"></div>
-  <div class="cardchocoweek"></div>
-  <div class="topsoumis"></div>
-  <div class="topblaster"></div>
-  <div class="cardsoumis"></div>
-  <div class="cardblaster"></div>
-  <div class="topchocoblast"></div>
-  <div class="toprat"></div>
-  <div class="cardchocoblast"></div>
-  <div class="cardrat"></div>
+
+  <div class="chocoweek">
+    <h2>Les Chocoblasts de la Semaine</h2>
+
+  </div>
+  <div class="cardchocoweek">
+    
+
+  </div>
+  <div class="topsoumis">
+    <h2>Top Chocoblastés</h2>
+
+  </div>
+  <div class="topblaster">
+  <h2>Top Chocoblasters</h2>
+
+  </div>
+  <div class="cardsoumis">
+
+  </div>
+  <div class="cardblaster">
+
+  </div>
+  <div class="topchocoblast">
+  <h2>Top Chocoblasts</h2>
+
+  </div>
+  <div class="toprat">
+  <h2>Top Raton-Laveur</h2>
+
+  </div>
+  <div class="cardchocoblast">
+
+  </div>
+  <div class="cardrat">
+
+  </div>
+
 </div>
    
 </body>

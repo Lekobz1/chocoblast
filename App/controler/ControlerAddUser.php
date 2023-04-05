@@ -1,6 +1,4 @@
 <?php
-    //connecter la bdd
-    include './App/utils/BddConnect.php';
     include './App/model/Utilisateur.php';
     include './App/manager/ManagerUtilisateur.php';
     

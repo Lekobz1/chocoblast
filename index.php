@@ -1,5 +1,6 @@
 <?php
 
+require_once './App/utils/BddConnect.php';
 
 //Analyse de l'URL avec parse_url() et retourne ses composants 
 $url = parse_url($_SERVER['REQUEST_URI']);

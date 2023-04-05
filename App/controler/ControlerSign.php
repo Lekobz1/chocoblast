@@ -1,4 +1,5 @@
 <?php 
+$bdd = BddConnect::connexion();
 $message = "";
 
 //tester si c'est submit
@@ -9,6 +10,8 @@ if (isset($_POST['submit'])){
     }
 
 
+}else {
+    $message = "merci de remplir les informations de connexion";
 }
 
 

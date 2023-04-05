@@ -9,6 +9,7 @@
 
     if (isset($_POST['submit'])){
         if (!empty($_POST['nom_utilisateur']) and !empty($_POST['prenom_utilisateur']) and !empty($_POST['mail_utilisateur']) and !empty($_POST['password_utilisateur']) ){
+            
             //test si le fichier à été importé (dossier tmp)
                 if($_FILES['image_utilisateur']['tmp_name'] !=""){
                     //tester la taille du fichier

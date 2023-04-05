@@ -20,7 +20,7 @@
             <input class="input" type="text" name="prenom_utilisateur" id="prenom_utilisateur"><br>
 
             <label class="label" for="mail_utilisateur">E-mail :</label>
-            <input class="input" type="email" name="mail_utilisateur" id="mail_utilisateur"><br>
+            <input class="input" type="email" name="mail_utilisateur" id="mail_utilisateur" required><br>
 
             <label class="label" for="password_utilisateur">Mot de passe :</label>
             <input class="input" type="password" name="password_utilisateur" id="password_utilisateur"><br>

@@ -47,7 +47,7 @@ class Utilisateur{
         return $this->statut;
     }
 
-    public function getRole(){_
+    public function getRole(){
         return $this->role;
     }
 

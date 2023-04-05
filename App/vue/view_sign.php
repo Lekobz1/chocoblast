@@ -10,7 +10,7 @@
 <body>
     <div class="formulaire">
         <h1>Connexion</h1>
-        <form method="POST" action="#" enctype="multipart/form-data">
+        <form method="POST" action="" enctype="multipart/form-data">
             <label class="label" for="nom_utilisateur">Nom :</label>
             <input class="input" type="text" name="nom_utilisateur" id="nom_utilisateur"><br>
 

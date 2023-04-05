@@ -16,8 +16,8 @@ switch($path){
             include './App/controler/ControlerAddUser.php';
             break ;
         //route /choblast/test -> ./controler/controler_add_user.php
-        case $path === "/chocoblast/test":
-            include './App/controler/controlerTest.php';
+        case $path === "/chocoblast/connexion":
+            include './App/controler/controlerSign.php';
             break ;
         //si rien ne correspond : route -> ./App/controler/Controler404.php
         default : 

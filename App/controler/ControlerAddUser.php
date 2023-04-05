@@ -69,52 +69,5 @@
         return substr(strrchr($file,'.'),1);
     }
 
-    // //fonction pour ajouter un nouveau compte
-    // function ajouter_nouveau_compte($bdd, $nom, $prenom, $mail, $motdepasse, $image){
-    //    //on exec le code SQL
-    //     try {
-    //         //on recupere des parametres
-    //         $surname = $nom;
-    //         $name = $prenom;
-    //         $email = $mail;
-    //         $password = $motdepasse;
-    //         $file = $image;
-    //         $bdd = BddConnect::connexion();
-    //         // preparation de la requete + ajout de le 'ID pour le role et on lui affecte la valeur 1 pour forcer que ce soit un user
-    //         $requete = $bdd->prepare('INSERT INTO utilisateur(nom_utilisateur, prenom_utilisateur, mail_utilisateur, password_utilisateur, image_utilisateur,id_roles) VALUES (?,?,?,?,?,1)');
-    //         //affectation des variables
-    //         $requete->bindParam(1, $surname, PDO::PARAM_STR);
-    //         $requete->bindParam(2, $name, PDO::PARAM_STR);
-    //         $requete->bindParam(3, $email, PDO::PARAM_STR);
-    //         $requete->bindParam(4, $password, PDO::PARAM_STR);
-    //         $requete->bindParam(5, $file, PDO::PARAM_STR);
-    //         //exécution de la requête
-    //         $requete->execute();
-    //     //gestion des erreurs (Exeception)
-    //     } catch (Exception $e){
-    //         die('Error: '.$e->getMessage());
-    //     }
-    // }
-
-    //fonction qui recherche si un utilisateur existe par son nom et prenom
-    // function getUserByName($bdd, $mail){
-    //     try {
-    //         $email = $mail;
-
-    //         $requete= $bdd->prepare('SELECT mail_utilisateur FROM utilisateur WHERE mail_utilisateur=?');
-
-    //         $requete->bindParam(1, $email, PDO::PARAM_STR);
-
-    //         $requete->execute();
-
-    //         $existe = $requete->fetchAll(PDO::FETCH_ASSOC);
-
-    //         return $existe;
-
-    //     } catch (Exception $e) {
-    //         die('Error: '.$e->getMessage());
-    //     }
-    // }
-
     include './App/vue/view_add_user.php';
 ?>
